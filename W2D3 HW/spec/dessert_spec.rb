@@ -1,12 +1,13 @@
 require 'rspec'
 require 'dessert'
+require 'chef'
 
 =begin
 Instructions: implement all of the pending specs (the `it` statements without blocks)! Be sure to look over the solutions when you're done.
 =end
 
 describe Dessert do
-  let(:chef) { double("chef", name: "David") }
+  let(:chef) { Chef.new('David') }
   let(:cookie) { Dessert.new('cookie', 50, chef) }
 
   describe "#initialize" do
@@ -36,30 +37,32 @@ describe Dessert do
 
   describe "#mix!" do
     it "shuffles the ingredient array" do
-      ingredients = ['flour', 'baking soda', 'sugar']
+      cookie.add_ingredient('flour')
+      cookie.add_ingredient('baking soda')
+      cookie.add_ingredient('sugar')
 
-      ingredients.each do |ingredient|
-        cookie.add_ingredient(ingredient)
-      end
-
-      expect(cookie.ingredients).to eq(ingredients)
+      #you can only call cookie.mix after this call
+      expect(cookie.mix!).to receive(:shuffle!)
       cookie.mix!
-      expect(cookie.ingredients).not_to eq(ingredients)
-      expect(cookie.ingredients.sort).to eq(ingredients.sort)
     end
 
   end
 
   describe "#eat" do
-    it "subtracts an amount from the quantity"
+    it "subtracts an amount from the quantity" do
+      #you can call cookie.eat before here and it will work
+      expect(cookie.eat(40)).to eq(10)
+    end
 
     it "raises an error if the amount is greater than the quantity" do
-      expect { cookie.eat(50) }.to raise_error
+      expect { cookie.eat(100) }.to raise_error('not enough left!')
     end
   end
 
   describe "#serve" do
-    it "contains the titleized version of the chef's name"
+    it "contains the titleized version of the chef's name" do
+
+    end
   end
 
   describe "#make_more" do
