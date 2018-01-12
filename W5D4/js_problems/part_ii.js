@@ -1,9 +1,17 @@
-// function titleize_name(name) {
-//   return `Mx. ${name} Jingleheimer Schmidt`;
-// }
-//
-// function titleize(array, cb) {
-//   for (let i = 0; i < array.length; i++) {
-//     cb(array[i]);
-//   }
-// }
+function titleize(array, cb) {
+  cb(array.map( name => `Mx. ${name} Jingleheimer Schmidt` ));
+}
+
+function Elephant(name, height, tricks) {
+  this.name = name;
+  this.height = height;
+  this.tricks = tricks;
+}
+
+Elephant.prototype.trumpet = function() {
+   console.log(`${this.name} the elephant goes 'phrRRRRRRRRRRR!!!!!!!'`);
+};
+
+Elephant.prototype.grow = function () {
+  this.height += 12;
+};

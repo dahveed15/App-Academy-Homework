@@ -12,7 +12,7 @@ function fizzBuzz(array) {
     if (array[i] % 15 === 0) {
       continue;
     } else if ((array[i] % 3 === 0) || (array[i] % 5 === 0)) {
-      result.push(array[i])
+      result.push(array[i]);
     }
   }
 
@@ -23,7 +23,7 @@ function isPrime(n) {
   var result = [];
   for (var i = 0; i <= n; i++) {
     if (n % i === 0) {
-      result.push(i)
+      result.push(i);
     }
   }
   return result.length === 2 ? true : false;
@@ -32,16 +32,16 @@ function isPrime(n) {
 function sumOfNPrimes(n) {
   var result = [];
 
-  i = 1
+  var i = 1;
   while (i > 0) {
     if (isPrime(i)) {
-      result.push(i)
+      result.push(i);
     }
     if (result.length === n) {
       break;
     }
     i++;
   }
-
+  //[1,4,5].reduce { |prev, next| prev + next }
   return result.length === 0 ? 0 : result.reduce( (prev, curr) => prev + curr );
 }
